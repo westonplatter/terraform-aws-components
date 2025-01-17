@@ -58,3 +58,20 @@ variable "principals_lambda" {
   description = "Principal account IDs of Lambdas allowed to consume ECR"
   default     = []
 }
+
+variable "replication_configuration" {
+  type        = list(object({
+    rules = list(object({          # Maximum 10
+      destinations = list(object({ # Maximum 25
+        region      = string
+        registry_id = string
+      }))
+      repository_filters = list(object({
+        filter      = string
+        filter_type = string
+      }))
+    }))
+  }))
+  description = "Replication configuration for a registry. See [Replication Configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_replication_configuration#replication-configuration)."
+  default     = []
+}

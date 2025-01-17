@@ -59,7 +59,7 @@ variable "principals_lambda" {
   default     = []
 }
 
-variable "replication_configuration" {
+variable "replication_configurations" {
   type        = list(object({
     rules = list(object({          # Maximum 10
       destinations = list(object({ # Maximum 25
